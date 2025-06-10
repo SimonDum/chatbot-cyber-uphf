@@ -1,0 +1,236 @@
+
+.div-contact{
+    border: yellow solid 2px;
+    min-height: calc(100vh - 1px);
+    padding-left: 40px;
+    padding-top: 100px;
+}
+
+#titre-contact{
+    color: white;
+    font-size: 50px;
+}
+
+.trait-blanc3{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 375px;
+    height: 10px;
+    /* max-height: 10px; */
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+
+.div-contenu{
+    margin-top: 30px;
+    border: brown solid 3px;
+    display: grid;
+    grid-template-columns: 400px 1fr; /* 2 colonnes égales */
+    grid-template-rows: none; /* 2 lignes */
+    padding-right: 50px;
+}
+
+
+.div-support{
+    /* width: 400px;
+    height: 175px; */
+    background-color: rgba(255,255,255,0.5);
+    border: orangered solid 2px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.div-rgpd{
+    background-color: rgba(255,255,255,0.5);
+    border: orangered solid 2px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-right: 20px;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.div-message{
+    background-color: rgba(255,255,255,0.5);
+    border: orangered solid 2px;
+    border-radius: 10px;
+    padding-right: 50px;
+    grid-column: 2;
+    grid-row: 1/3;
+}
+
+
+.titre-balise-contact{
+    font-size: 25px;
+    color: black;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+
+#mail{
+    font-size: 15px;
+    color: black;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+#droit-rgpd{
+    font-size: 15px;
+    color: rgb(125, 117, 117);
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+
+.champ-remplir{
+    padding-left: 20px;
+    padding-top: 20px;
+    /* border: blue solid 2px; */
+    display: grid;
+    grid-template-columns: 300px 1fr; /* 2 colonnes égales */
+    grid-template-rows: none; /* 2 lignes */
+}
+
+#champ-obligatoire{
+    font-size: 15px;
+    color: black;
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 10px;
+}
+
+#prenom{
+    border: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+    padding: 8px 0;
+    font-size: 16px;
+    outline: none;
+    transition: border-bottom-color 0.3s ease;
+    color: black;
+    grid-column: 1;
+    grid-row: 2;
+    margin-bottom: 20px;
+
+}
+#prenom::placeholder{
+    color: black;
+    font-size: 14px;
+}
+
+
+#nom{
+    border: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+    padding: 8px 0;
+    font-size: 16px;
+    outline: none;
+    transition: border-bottom-color 0.3s ease;
+    color: black;
+    grid-column: 1;
+    grid-row: 3;
+    margin-bottom: 20px;
+}
+#nom::placeholder{
+    color: black;
+    font-size: 14px;
+}
+
+
+#email{
+    border: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+    padding: 8px 0;
+    font-size: 16px;
+    outline: none;
+    transition: border-bottom-color 0.3s ease;
+    color: black;
+    grid-column: 1;
+    grid-row: 4;
+    margin-bottom: 20px;
+}
+
+#email::placeholder{
+    color: black;
+    font-size: 14px;
+}
+
+#entreprise{
+    border: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+    padding: 8px 0;
+    font-size: 16px;
+    outline: none;
+    transition: border-bottom-color 0.3s ease;
+    color: black;
+    grid-column: 1;
+    grid-row: 5;
+    margin-bottom: 20px;
+}
+
+#entreprise::placeholder{
+    color: black;
+    font-size: 14px;
+}
+
+#button-envoyer{
+    background-color: black;
+    color: white;
+    width: 50%;
+    max-width: 50%;
+    height: 30px;
+    border-radius: 3px;
+    grid-column: 1;
+    grid-row: 6;
+    margin-bottom: 15px;
+}
+
+#message{
+    width: 100%;
+    max-width: 100%;
+    margin-left: 20px;
+    font-size: 16px;
+    resize: none;
+    box-sizing: border-box;
+    color: black;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 5px;
+    border: none;
+    grid-column: 2;
+    grid-row: 1/7;
+    margin-bottom: 15px;
+}
+#message::placeholder{
+    padding-top: 10px;
+    padding-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(125, 117, 117);
+    font-size: 14px;
+}
+
+
+
+/* Sur mobile, tout en colonne */
+/* @media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+} */
