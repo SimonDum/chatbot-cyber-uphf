@@ -69,7 +69,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ conversation, onMessageSe
     return (
       <div className="flex-1 flex items-center justify-center bg-slate-50">
         <div className="text-center">
-          <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Send className="w-8 h-8 text-white" />
           </div>
           <h3 className="text-xl font-semibold text-slate-800 mb-2">
@@ -139,7 +139,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ conversation, onMessageSe
           <button
             type="submit"
             disabled={!message.trim() || isLoading}
-            className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+            className="flex-shrink-0 w-12 h-12 bg-blue-500 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
             {isLoading ? (
               <Loader2 className="w-5 h-5 animate-spin" />

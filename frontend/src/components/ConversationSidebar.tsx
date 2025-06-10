@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, MessageSquare, Trash2, MoreVertical } from 'lucide-react';
 import { chatAPI } from '../services/api';
-import type { Conversation } from '../types';
+import type { ConversationResponse } from '../types';
 
 interface ConversationSidebarProps {
-  conversations: Conversation[];
+  conversations: ConversationResponse[];
   activeConversationId: number | null;
   onSelectConversation: (id: number) => void;
   onCreateConversation: () => void;
@@ -51,7 +51,7 @@ const ConversationSidebar: React.FC<ConversationSidebarProps> = ({
       <div className="p-4 border-b border-slate-200">
         <button
           onClick={onCreateConversation}
-          className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all"
+          className="w-full flex items-center justify-center space-x-2 bg-blue-500 text-white px-4 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all"
         >
           <Plus className="w-5 h-5" />
           <span className="font-medium">New Conversation</span>

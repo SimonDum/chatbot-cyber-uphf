@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import ConversationSidebar from './ConversationSidebar';
 import ChatInterface from './ChatInterface';
 import { chatAPI } from '../services/api';
-import type { Conversation } from '../types';
+import type { ConversationResponse } from '../types';
 
 const ChatApp: React.FC = () => {
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [activeConversation, setActiveConversation] = useState<Conversation | null>(null);
+  const [conversations, setConversations] = useState<ConversationResponse[]>([]);
+  const [activeConversation, setActiveConversation] = useState<ConversationResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const loadConversations = async () => {

@@ -96,7 +96,7 @@ export default function Chat() {
       id: crypto.getRandomValues(randomBuffer)[0],
       content: input,
       role: 'user',
-      created_at: new Date().toTimeString(),
+      created_at: new Date().toISOString(),
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -116,7 +116,7 @@ export default function Chat() {
         id: crypto.getRandomValues(randomBuffer)[0],
         content: response.message || "Sorry, I couldn't process your request.",
         role: 'assistant',
-        timestamp: new Date(),
+        created_at: new Date().toISOString(),
       };
       
       setMessages(prev => [...prev, botMessage]);
@@ -208,7 +208,7 @@ export default function Chat() {
           <div className="absolute bottom-0 w-full p-4 border-t border-gray-200/50 dark:border-gray-700/50 bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
                   <User className="w-5 h-5 text-white" />
                 </div>
                 <div>
@@ -305,7 +305,7 @@ export default function Chat() {
                   <div
                     className={`max-w-[80%] p-4 rounded-2xl backdrop-blur-sm ${
                       message.role === 'user'
-                        ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
+                        ? 'bg-blue-500 text-white'
                         : 'bg-white/90 dark:bg-gray-800/90 border border-gray-200/50 dark:border-gray-700/50 text-gray-800 dark:text-gray-100'
                     }`}
                   >
@@ -348,7 +348,7 @@ export default function Chat() {
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  className="bg-blue-500 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
                   <Send className="w-5 h-5" />
                 </button>
