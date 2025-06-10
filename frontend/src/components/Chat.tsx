@@ -5,26 +5,12 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { chatAPI } from '../services/api';
-
-interface Message {
-  id: string;
-  content: string;
-  role: 'user' | 'assistant';
-  timestamp: Date;
-}
-
-interface Conversation {
-  id: number;
-  title: string;
-  created_at: string;
-  updated_at: string;
-  messages?: any[];
-}
+import { ConversationResponse, Message } from '../types';
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [currentConversation, setCurrentConversation] = useState<Conversation | null>(null);
+  const [conversations, setConversations] = useState<ConversationResponse[]>([]);
+  const [currentConversation, setCurrentConversation] = useState<ConversationResponse | null>(null);
   const [input, setInput] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
@@ -53,20 +39,15 @@ export default function Chat() {
     }
   };
 
-  const selectConversation = async (conversation: Conversation) => {
+  const selectConversation = async (conversation: ConversationResponse) => {
     try {
       setCurrentConversation(conversation);
       setError('');
       
       const conversationData = await chatAPI.getConversation(conversation.id);
+      console.log(conversation.messages);
       
-      const formattedMessages: Message[] = conversationData.messages?.map((msg: any) => ({
-        id: msg.id?.toString() || crypto.randomUUID(),
-        content: msg.content,
-        role: msg.is_user ? 'user' : 'assistant',
-        timestamp: new Date(msg.timestamp || Date.now()),
-      })) || [];
-      
+      const formattedMessages: Message[] = conversationData.messages;
       setMessages(formattedMessages);
     } catch (error) {
       console.error('Error loading conversation:', error);
@@ -110,11 +91,12 @@ export default function Chat() {
     e.preventDefault();
     if (!input.trim() || !currentConversation || isLoading) return;
 
+    const randomBuffer = new Uint32Array(1);
     const userMessage: Message = {
-      id: crypto.randomUUID(),
+      id: crypto.getRandomValues(randomBuffer)[0],
       content: input,
       role: 'user',
-      timestamp: new Date(),
+      created_at: new Date().toTimeString(),
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -128,9 +110,10 @@ export default function Chat() {
         content: input,
         conversation_id: currentConversation.id
       });
-      
+
+      const randomBuffer = new Uint32Array(1);
       const botMessage: Message = {
-        id: crypto.randomUUID(),
+        id: crypto.getRandomValues(randomBuffer)[0],
         content: response.message || "Sorry, I couldn't process your request.",
         role: 'assistant',
         timestamp: new Date(),
@@ -160,7 +143,7 @@ export default function Chat() {
     navigate('/');
   };
 
-  const formatConversationTitle = (conversation: Conversation) => {
+  const formatConversationTitle = (conversation: ConversationResponse) => {
     if (conversation.title && conversation.title !== 'Nouvelle conversation') {
       return conversation.title;
     }
@@ -330,7 +313,7 @@ export default function Chat() {
                     <p className={`text-xs mt-2 ${
                       message.role === 'user' ? 'text-blue-100' : 'text-gray-400 dark:text-gray-500'
                     }`}>
-                      {message.timestamp.toLocaleTimeString()}
+                      {new Date(message.created_at).toLocaleTimeString()}
                     </p>
                   </div>
                 </div>

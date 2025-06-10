@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, Loader2 } from 'lucide-react';
 import ChatMessage from './ChatMessage';
 import { chatAPI } from '../services/api';
-import type { Conversation, MessageCreate } from '../types';
+import type { ConversationResponse, MessageCreate } from '../types';
 
 interface ChatInterfaceProps {
-  conversation: Conversation | null;
+  conversation: ConversationResponse | null;
   onMessageSent: () => void;
 }
 

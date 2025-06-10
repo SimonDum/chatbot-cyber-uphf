@@ -4,12 +4,12 @@ export interface User {
   full_name: string;
 }
 
-export interface LoginCredentials {
+export interface LoginRequest {
   email: string;
   password: string;
 }
 
-export interface RegisterCredentials {
+export interface RegisterRequest {
   email: string;
   password: string;
   full_name: string;
@@ -22,13 +22,12 @@ export interface AuthResponse {
 
 export interface Message {
   id: number;
+  role: string;
   content: string;
-  is_user: boolean;
-  timestamp: string;
-  conversation_id: number;
+  created_at: string;
 }
 
-export interface Conversation {
+export interface ConversationResponse {
   id: number;
   title: string;
   created_at: string;
@@ -44,5 +43,5 @@ export interface MessageCreate {
 export interface ChatResponse {
   message: Message;
   conversation_id: Message;
-  sources: string[];
+  sources: [];
 }
