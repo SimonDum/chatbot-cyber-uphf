@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { authAPI } from '../services/api';
-import type { User, LoginCredentials, RegisterCredentials } from '../types';
+import type { User, LoginRequest, RegisterRequest } from '../types';
 
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
-  login: (credentials: LoginCredentials) => Promise<void>;
-  register: (credentials: RegisterCredentials) => Promise<void>;
+  login: (credentials: LoginRequest) => Promise<void>;
+  register: (credentials: RegisterRequest) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -39,7 +39,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsLoading(false);
   }, []);
 
-  const login = async (credentials: LoginCredentials) => {
+  const login = async (credentials: LoginRequest) => {
     try {
       const response = await authAPI.login(credentials);
       localStorage.setItem('access_token', response.access_token);
@@ -50,7 +50,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const register = async (credentials: RegisterCredentials) => {
+  const register = async (credentials: RegisterRequest) => {
     try {
       const user = await authAPI.register(credentials);
       // Auto-login after registration

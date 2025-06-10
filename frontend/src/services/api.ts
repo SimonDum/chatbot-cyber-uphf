@@ -1,10 +1,10 @@
 import axios from 'axios';
 import type { 
-  LoginCredentials, 
-  RegisterCredentials, 
+  LoginRequest, 
+  RegisterRequest, 
   AuthResponse, 
   User, 
-  Conversation, 
+  ConversationResponse, 
   MessageCreate, 
   ChatResponse 
 } from '../types';
@@ -40,29 +40,29 @@ api.interceptors.response.use(
 );
 
 export const authAPI = {
-  login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
+  login: async (credentials: LoginRequest): Promise<AuthResponse> => {
     const response = await api.post('/auth/login', credentials);
     return response.data;
   },
 
-  register: async (credentials: RegisterCredentials): Promise<User> => {
+  register: async (credentials: RegisterRequest): Promise<User> => {
     const response = await api.post('/auth/register', credentials);
     return response.data;
   },
 };
 
 export const chatAPI = {
-  getConversations: async (): Promise<Conversation[]> => {
+  getConversations: async (): Promise<ConversationResponse[]> => {
     const response = await api.get('/chat/conversations');
     return response.data;
   },
 
-  createConversation: async (): Promise<Conversation> => {
+  createConversation: async (): Promise<ConversationResponse> => {
     const response = await api.post('/chat/conversations');
     return response.data;
   },
 
-  getConversation: async (conversationId: number): Promise<Conversation> => {
+  getConversation: async (conversationId: number): Promise<ConversationResponse> => {
     const response = await api.get(`/chat/conversations/${conversationId}`);
     return response.data;
   },
@@ -73,7 +73,6 @@ export const chatAPI = {
 
   sendMessage: async (conversationId: number, message: MessageCreate): Promise<ChatResponse> => {
     const response = await api.post(`/chat/conversations/${conversationId}/messages`, message);
-    console.log(response.data);
     return response.data;
   },
 };
