@@ -14,13 +14,6 @@ class Settings(BaseSettings):
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     OLLAMA_MODEL: str = "llama3"
     
-    # Vector DB
-    VECTOR_DIMENSION: int = 1536
-    
-    # File uploads
-    UPLOAD_DIR: str = "uploads"
-    MAX_FILE_SIZE: int = 10 * 1024 * 1024  # 10MB
-    
     class Config:
         env_file = ".env"
 

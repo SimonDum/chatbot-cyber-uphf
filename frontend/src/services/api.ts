@@ -1,12 +1,12 @@
 import axios from 'axios';
 import type { 
-  LoginRequest, 
-  RegisterRequest, 
-  AuthResponse, 
-  User, 
+  UserLoginRequest, 
+  UserRegisterRequest,
+  User,
   ConversationResponse, 
   MessageCreate, 
-  ChatResponse 
+  ChatResponse, 
+  TokenLoginResponse
 } from '../types';
 
 const API_BASE_URL = 'http://localhost:8000/api'; // Adjust this to your FastAPI server URL
@@ -40,13 +40,18 @@ api.interceptors.response.use(
 );
 
 export const authAPI = {
-  login: async (credentials: LoginRequest): Promise<AuthResponse> => {
+  login: async (credentials: UserLoginRequest): Promise<TokenLoginResponse> => {
     const response = await api.post('/auth/login', credentials);
     return response.data;
   },
 
-  register: async (credentials: RegisterRequest): Promise<User> => {
+  register: async (credentials: UserRegisterRequest): Promise<User> => {
     const response = await api.post('/auth/register', credentials);
+    return response.data;
+  },
+
+  getMe: async (): Promise<User> => {
+    const response = await api.get('/auth/me');
     return response.data;
   },
 };

@@ -73,9 +73,6 @@ async def delete_conversation(
     if not conversation:
         raise HTTPException(status_code=404, detail="Conversation not found")
     
-    # Nettoyer la mémoire du chatbot
-    chatbot_service.reset_conversation_memory(current_user.id, conversation_id)
-    
     # Supprimer de la BDD
     db.delete(conversation)
     db.commit()
