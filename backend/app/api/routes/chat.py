@@ -32,7 +32,7 @@ async def create_conversation(
     try:
         new_conversation = ConversationModel(
             user_id=current_user.id,
-            title="Nouvelle conversation"
+            title="Nouvelle conversation",
         )
         db.add(new_conversation)
         db.commit()
