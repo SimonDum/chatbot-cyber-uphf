@@ -1,11 +1,10 @@
-import React from 'react';
-import Navbar from "./navbar";
-import Projet from "./projet"; 
+import React, { useState, useEffect } from 'react';
 import Information from "./information";
 import Contact from "./contact";
 
 import { useNavigate } from 'react-router-dom';
 import { Shield, ChevronRight, Lock, Shield as ShieldIcon, UserCheck } from 'lucide-react';
+import Projet from './projet';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -45,10 +44,21 @@ export default function Home() {
               <Shield className="w-8 h-8 text-blue-400" />
               <span className="text-white font-semibold text-xl">CyberBot IA</span>
             </div>
-              <a href="/" className="font-semibold">Accueil</a>
-              <a href="#Projet" className="font-semibold">Projet</a>
-              <a href="#Information" className="font-semibold">A propos de nous</a>
-              <a href="#Contact" className="font-semibold">Contactez-nous</a>
+
+
+              <a href="#" className="font-semibold text-blue-50">
+                  Accueil
+              </a>
+              <a href="#Projet" className="font-semibold text-blue-50">
+                  Projet
+              </a>
+              <a href="#Information" className="font-semibold text-blue-50">
+                  A propos de nous
+              </a>
+              <a href="#Contact" className="font-semibold text-blue-50">
+                  Contactez-nous
+              </a>
+
               <button
                 onClick={() => navigate('/login')}
                 className="px-6 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white font-medium transition-colors backdrop-blur-sm border border-white/20">
@@ -99,12 +109,16 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-
-
             </div>
-            <Projet />
-          <Information />
-          <Contact />
+            <section id="Projet">
+              <Projet />
+            </section>
+            <section id="Information">
+              <Information />
+            </section>
+            <section id="Contact">
+              <Contact />
+            </section>
           </div>
         </main>
       </div>

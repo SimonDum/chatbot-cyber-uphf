@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-function information() {
+function Information() {
   return (
     <div className='min-h-screen mx-auto border-4 border-green-600' id="Information">
       <h1 className='text-5xl md:text-6xl font-bold text-white leading-tight'>A propos de nous</h1>
@@ -24,4 +24,4 @@ function information() {
   )
 }
 
-export default information
+export default Information

@@ -3,10 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/navbar.css';
 
-function navbar() {
+function Navbar() {
 
     const [scrolled, setScrolled] = useState(false);
     const [inSection, setInSection] = useState(false);
+    const [activeSection, setActiveSection] = useState("");
+
 
     useEffect(() => {
         // 1. Listener scroll pour savoir si scrollY > window.innerHeight
@@ -75,4 +77,4 @@ function navbar() {
   )
 }
 
-export default navbar
+export default Navbar

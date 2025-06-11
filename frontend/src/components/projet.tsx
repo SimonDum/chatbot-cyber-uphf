@@ -1,9 +1,7 @@
-
-
 import React from 'react';
 // import '../styles/projet.css';
 
-function projet() {
+function Projet() {
   return (
     // div-projet
     <div className=' min-h-screen mx-auto pt-4 border-4 border-blue-600' id="Projet">
@@ -42,4 +40,4 @@ function projet() {
   )
 }
 
-export default projet
+export default Projet

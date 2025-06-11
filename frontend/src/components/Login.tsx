@@ -40,7 +40,7 @@ export default function Login() {
       } else if (err.message) {
         setError(err.message);
       } else {
-        setError('An error occurred');
+        setError('Une erreur est survenue');
       }
     }
      finally {
@@ -53,7 +53,7 @@ export default function Login() {
       <div 
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{ 
-          backgroundImage: 'url(https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop)',
+          backgroundImage: 'url(/pxfuel.jpg)',
           filter: 'brightness(0.7)'
         }}
       />
@@ -65,7 +65,7 @@ export default function Login() {
             className="mb-6 text-white/80 hover:text-white flex items-center space-x-2 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>Back to Home</span>
+            <span>Retour à l'accueil</span>
           </button>
 
           <div className="flex justify-center mb-6">
@@ -75,13 +75,13 @@ export default function Login() {
           </div>
           
           <h2 className="text-3xl font-bold text-center text-white mb-2">
-            {isRegistering ? 'Create Account' : 'Welcome Back'}
+            {isRegistering ? 'Créer un compte' : 'Bienvenue'}
           </h2>
           
           <p className="text-center text-blue-200 mb-6">
             {isRegistering 
-              ? 'Sign up to access your cybersecurity assistant'
-              : 'Sign in to access your cybersecurity assistant'}
+              ? 'Créer un compte pour utiliser CyberBot UPHF'
+              : 'Se connecter pour utiliser CyberBot UPHF'}
           </p>
           
           <ErrorDisplay error={error} />
@@ -90,7 +90,7 @@ export default function Login() {
             {isRegistering && (
               <div className="space-y-2">
                 <label htmlFor="fullName\" className="block text-sm font-medium text-blue-200">
-                  Full Name
+                  Nom
                 </label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-300" />
@@ -109,7 +109,7 @@ export default function Login() {
 
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm font-medium text-blue-200">
-                Email address
+                Adresse Email
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-300" />
@@ -127,7 +127,7 @@ export default function Login() {
             
             <div className="space-y-2">
               <label htmlFor="password" className="block text-sm font-medium text-blue-200">
-                Password
+                Mot de passe
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-300" />
@@ -159,12 +159,12 @@ export default function Login() {
                   {isRegistering ? (
                     <>
                       <UserPlus className="w-5 h-5" />
-                      <span>Create Account</span>
+                      <span>S'inscrire</span>
                     </>
                   ) : (
                     <>
                       <LogIn className="w-5 h-5" />
-                      <span>Sign In</span>
+                      <span>Se connecer</span>
                     </>
                   )}
                 </>
@@ -182,8 +182,8 @@ export default function Login() {
                 className="text-blue-200 hover:text-white transition-colors text-sm"
               >
                 {isRegistering
-                  ? 'Already have an account? Sign in'
-                  : "Don't have an account? Sign up"}
+                  ? 'Vous possédez déjà un compte? Connectez-vous'
+                  : "Vous n'avez pas encore de compte ? Inscrivez-vous"}
               </button>
             </div>
           </form>
