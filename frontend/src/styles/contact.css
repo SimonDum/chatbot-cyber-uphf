@@ -2,7 +2,7 @@
 .div-contact{
     border: yellow solid 2px;
     min-height: calc(100vh - 1px);
-    padding-left: 40px;
+    /* padding-left: 40px; */
     padding-top: 100px;
 }
 
@@ -30,7 +30,7 @@
     display: grid;
     grid-template-columns: 400px 1fr; /* 2 colonnes égales */
     grid-template-rows: none; /* 2 lignes */
-    padding-right: 50px;
+    /* padding-right: 50px; */
 }
 
 
@@ -60,7 +60,7 @@
     background-color: rgba(255,255,255,0.5);
     border: orangered solid 2px;
     border-radius: 10px;
-    padding-right: 50px;
+    padding-right: 40px;
     grid-column: 2;
     grid-row: 1/3;
 }

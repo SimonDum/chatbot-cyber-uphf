@@ -23,7 +23,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
     try {
       await login({ email, password });
     } catch (err: any) {
-      setError(err.response?.data?.detail || 'Login failed');
+      setError(err.response?.data?.detail || 'Connexion Echouée..');
     } finally {
       setIsLoading(false);
     }
@@ -44,7 +44,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Email Address
+                Adresse mail
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -61,12 +61,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Password
+                Mot de passe
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? 'texte' : 'mot de passe'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-10 pr-12 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"

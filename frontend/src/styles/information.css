@@ -4,12 +4,7 @@
     min-height: calc(100vh - 1px);
     padding-top: 100px;
     /* color: white; */
-    padding-left: 40px;
-}
-
-.titre-info{
-    color: white;
-    font-size: 50px;
+    /* padding-left: 40px; */
 }
 
 .trait-blanc2{

@@ -1,9 +1,9 @@
 // "use client";
 
-import Navbar from "./components/navbar";
-import Projet from "./pages/projet";  
-import Information from "./pages/information";
-import Contact from "./pages/contact";
+import Navbar from "navbar";
+import Projet from "./projet"; 
+import Information from "./information";
+import Contact from "./contact";
 
 export default function Home() {
   
