@@ -4,6 +4,8 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Home from './components/Home';
 import Login from './components/Login';
 import Chat from './components/Chat';
+import { PublicRoute } from './routes/PublicRoute';
+import { PrivateRoute } from './routes/PrivateRoute';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated, isLoading } = useAuth();
@@ -24,23 +26,37 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route 
-            path="/chat" 
+          <Route
+            path="/"
             element={
-              <ProtectedRoute>
+              <PublicRoute>
+                <Home />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              <PrivateRoute>
                 <Chat />
-              </ProtectedRoute>
-            } 
+              </PrivateRoute>
+            }
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

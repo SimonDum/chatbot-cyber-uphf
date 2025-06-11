@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Lock, Mail, ArrowLeft, UserPlus, LogIn, User } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { ErrorDisplay } from './ErrorDisplay';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -30,14 +31,19 @@ export default function Login() {
       }
       navigate('/chat');
     } catch (err: any) {
-      if (err.response?.data?.detail) {
-        setError(err.response.data.detail);
+      const detail = err.response?.data?.detail;
+      if (Array.isArray(detail)) {
+        // Erreur de validation Pydantic : on concatène les messages
+        setError(detail.map((d: any) => d.msg).join(', '));
+      } else if (typeof detail === 'string') {
+        setError(detail);
       } else if (err.message) {
         setError(err.message);
       } else {
         setError('An error occurred');
       }
-    } finally {
+    }
+     finally {
       setIsLoading(false);
     }
   };
@@ -78,11 +84,7 @@ export default function Login() {
               : 'Sign in to access your cybersecurity assistant'}
           </p>
           
-          {error && (
-            <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg">
-              <p className="text-red-200 text-center text-sm">{error}</p>
-            </div>
-          )}
+          <ErrorDisplay error={error} />
           
           <form onSubmit={handleSubmit} className="space-y-6">
             {isRegistering && (

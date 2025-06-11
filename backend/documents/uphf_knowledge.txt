@@ -1,0 +1,143 @@
+SÉCURITÉ DES SYSTÈMES D'INFORMATION - UPHF
+
+DESCRIPTION GÉNÉRALE
+La sécurité informatique ou plus largement la Sécurité des Systèmes d'Information (SSI) fait partie de la stratégie du numérique à l'UPHF et de l'INSA HdF.
+La SSI s'applique sur l'ensemble des systèmes d'information de l'établissement : Formation, Pédagogie, Ressources Humaines, Recherche, Financier et Comptable.
+Elle intègre les moyens techniques, humains et juridiques.
+Elle vise à protéger la circulation, le stockage et le traitement des données afin de garantir la continuité de l'activité de l'université.
+Le contexte stratégique concerne les données numériques stockées : données scientifiques, données technologiques, données de gestion, données personnelles.
+
+ORGANISATION DE LA SSI
+
+CHAÎNE FONCTIONNELLE SSI
+L'organisation de la SSI est conforme à la directive interministérielle n°901 sur la protection des systèmes d'information traitant des informations sensibles non classifiées de défense.
+
+AU NIVEAU MINISTÉRIEL :
+- Haut Fonctionnaire de Défense et de Sécurité (HFDS) placé sous l'autorité du ministre
+  * Conseille le ministre en matière de défense et de sécurité
+  * Anime et coordonne la politique en matière de défense, de vigilance, de prévention de crise et de situation d'urgence
+  * Contrôle la préparation des mesures d'application
+  * Veille à la protection du patrimoine scientifique et technique
+  * anime la politique de sécurité des systèmes d'information et contrôle son application
+
+- Fonctionnaire de la Sécurité des Systèmes d'Information (FSSI) désigné et placé sous l'autorité du HFDS
+  * Anime le pilotage de la SSI au sein du ministère
+  * Est le lien avec les AQSSI et RSSI
+  * Assure la liaison avec les commissions interministérielles et ministérielles spécialisées en matière de SSI
+
+AU NIVEAU ÉTABLISSEMENT :
+- Autorité Qualifiée pour la SSI (AQSSI) : Le chef d'établissement
+  * Définit la politique de sécurité des systèmes d'information adaptée à son établissement
+  * Fixe les objectifs de sécurité
+  * Veille à la mise en œuvre des dispositions réglementaires
+
+- Fonctionnaire de Sécurité de Défense (FSD adjoint) désigné par l'AQSSI
+  * Correspondant fonctionnel du HFDS
+  * Rôle de coordination, de conseil et d'information concernant :
+    - La protection du potentiel scientifique et technique
+    - La protection du secret
+    - La préparation/exécution des plans de défense et de sécurité
+
+- Responsable de la Sécurité du Système d'Information (RSSI) + RSSI adjoint désignés par l'AQSSI
+  * Conseille l'AQSSI
+  * Assure le suivi des moyens nécessaires à la mise en œuvre des consignes et directives
+
+ACTIONS MISES EN ŒUVRE POUR LA SSI
+
+SENSIBILISATION
+La sécurité informatique n'est pas que l'apanage des informaticiens de la DNum, des composantes ou de procédés technologiques, mais bel et bien l'affaire de tous.
+La DNum met en œuvre un plan de prévention à ces risques par :
+- Une information régulière sur les points saillants des alertes de sécurité
+- La mise en place d'événements (conférences) autour de la sécurité numérique
+
+ASPECTS JURIDIQUES - RÈGLEMENT INTÉRIEUR
+Chaque usager de l'établissement est responsable des moyens numériques mis à sa disposition :
+- Étudiants
+- Personnel administratif
+- Personnel technique
+- Enseignants
+- Chercheurs
+- Invités
+
+Ces responsabilités, droits et devoirs sont définis dans le Règlement intérieur des usages des systèmes d'Information validé en conseil d'administration de l'UPHF.
+
+Il existe également la réglementation PSSIE (Politique de Sécurité des Systèmes d'Information de l'État) qui définit les orientations nationales en matière de sécurité des systèmes d'information. Les ministères et les établissements publics d'État doivent s'y soumettre.
+
+ENVIRONNEMENT TECHNOLOGIQUE
+L'université met en place des briques technologiques permettant les accès aux systèmes d'information de l'établissement de manière à suivre les recommandations nationales :
+- Taille et complexité des mots de passe
+- Accès via VPN
+- Authentification multifacteurs
+
+TROIS OUTILS PRINCIPAUX MIS EN PLACE À L'UPHF :
+
+1. ESUP OTP (authentificateur multifacteur)
+   - Système d'authentification à deux facteurs
+   - Sécurise l'accès aux services numériques
+   - Génère des codes temporaires pour valider les connexions
+
+2. eduVPN (VPN)
+   - Réseau privé virtuel pour sécuriser les connexions
+   - Permet l'accès sécurisé aux ressources internes depuis l'extérieur
+   - Chiffre les communications
+
+3. Sésame (gestion de l'identité numérique)
+   - Gestion centralisée des identifiants
+   - Gestion des mots de passe
+   - Contrôle des accès aux différents services
+
+BONNES PRATIQUES DE SÉCURITÉ
+
+GESTION DES MOTS DE PASSE :
+- Utiliser des mots de passe complexes et uniques
+- Respecter les exigences de taille minimale
+- Ne pas réutiliser les mêmes mots de passe
+- Changer régulièrement les mots de passe
+- Utiliser le gestionnaire Sésame
+
+AUTHENTIFICATION :
+- Activer l'authentification multifacteurs avec ESUP OTP
+- Utiliser les codes temporaires pour les connexions sensibles
+- Ne jamais partager ses identifiants
+
+ACCÈS DISTANT :
+- Utiliser exclusivement eduVPN pour les accès distants
+- Ne pas utiliser de réseaux WiFi publics non sécurisés pour accéder aux données sensibles
+- Vérifier la validité des certificats
+
+DONNÉES ET DOCUMENTS :
+- Classer les données selon leur niveau de sensibilité
+- Protéger les données personnelles
+- Sauvegarder régulièrement les données importantes
+- Ne pas stocker de données sensibles sur des supports non sécurisés
+
+SIGNALEMENT D'INCIDENTS :
+En cas de doute, question, événement, site ou mail suspect, s'adresser directement aux RSSI.
+Ne pas ignorer les alertes de sécurité.
+Signaler immédiatement tout incident de sécurité.
+
+MENACES COURANTES À ÉVITER :
+- Phishing et tentatives d'hameçonnage
+- Malwares et virus
+- Ingénierie sociale
+- Accès non autorisés
+- Fuites de données
+- Attaques par déni de service
+
+CONFORMITÉ RÉGLEMENTAIRE :
+- Respect du RGPD pour les données personnelles
+- Conformité à la PSSIE
+- Application du règlement intérieur
+- Suivi des directives nationales de sécurité
+
+FORMATION ET SENSIBILISATION :
+- Participation aux événements de sensibilisation
+- Mise à jour régulière des connaissances en sécurité
+- Formation continue du personnel
+- Veille sur les nouvelles menaces
+
+CONTACTS ET RESSOURCES :
+- RSSI de l'UPHF pour toute question de sécurité
+- Site Renater pour compléments d'information sur la SSI
+- Documentation interne sur les procédures de sécurité
+- Alertes de sécurité régulières de la DNum

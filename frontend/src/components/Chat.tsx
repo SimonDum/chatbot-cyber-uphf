@@ -1,11 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  MessageSquare, Send, LogOut, Menu, User, ChevronRight, Plus, Shield, Sun, Moon, Trash2,
-} from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { chatAPI } from '../services/api';
 import { ConversationResponse, Message } from '../types';
+import { ConversationSidebar } from './ConversationSidebar';
+import { ChatHeader } from './ChatHeader';
+import { ChatMessage } from './ChatMessage';
+import { ChatInput } from './ChatInput';
+import { ErrorDisplay } from './ErrorDisplay';
+import { EmptyState } from './EmptyState'
+import { TypingIndicator } from './TypingIndicator';
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -147,213 +151,56 @@ export default function Chat() {
     if (conversation.title && conversation.title !== 'Nouvelle conversation') {
       return conversation.title;
     }
-    return `Conversation ${new Date(conversation.created_at).toLocaleDateString()}`;
+    return conversation.title;
   };
 
   return (
     <div className={`${darkMode ? 'dark' : ''}`}>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex text-gray-900 dark:text-gray-100">
-        {/* Sidebar */}
-        <div
-          className={`${
-            isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } fixed md:relative w-72 bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg h-screen transition-transform duration-300 ease-in-out z-20 md:translate-x-0 border-r border-gray-200/50 dark:border-gray-700/50`}
-        >
-          <div className="p-4 border-b border-gray-200/50 dark:border-gray-700/50">
-            <button
-              onClick={startNewConversation}
-              className="w-full flex items-center justify-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors font-medium"
-            >
-              <Plus className="w-5 h-5" />
-              <span>New Chat</span>
-            </button>
-          </div>
+        <ConversationSidebar
+          conversations={conversations}
+          currentConversation={currentConversation}
+          isOpen={isSidebarOpen}
+          user={user}
+          onNewConversation={startNewConversation}
+          onSelectConversation={selectConversation}
+          onDeleteConversation={deleteConversation}
+          onSignOut={handleSignOut}
+          formatConversationTitle={formatConversationTitle}
+        />
 
-          <div className="p-4 space-y-2 overflow-y-auto flex-1">
-            {conversations.map(conv => (
-              <div
-                key={conv.id}
-                className={`p-3 rounded-lg cursor-pointer transition-all group relative ${
-                  currentConversation?.id === conv.id
-                    ? 'bg-blue-100/80 dark:bg-blue-900/50 border border-blue-200/50'
-                    : 'hover:bg-gray-100/80 dark:hover:bg-gray-700/50'
-                }`}
-                onClick={() => selectConversation(conv)}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3 flex-1 min-w-0">
-                    <MessageSquare className="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0" />
-                    <span className="font-medium text-gray-700 dark:text-gray-100 truncate">
-                      {formatConversationTitle(conv)}
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <button
-                      onClick={(e) => deleteConversation(conv.id, e)}
-                      className="p-1 opacity-0 group-hover:opacity-100 hover:bg-red-100/80 dark:hover:bg-red-900/50 rounded transition-all"
-                      title="Delete conversation"
-                    >
-                      <Trash2 className="w-4 h-4 text-red-500" />
-                    </button>
-                    <ChevronRight className="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                </div>
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                  {new Date(conv.updated_at).toLocaleDateString()}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="absolute bottom-0 w-full p-4 border-t border-gray-200/50 dark:border-gray-700/50 bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
-                  <User className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-800 dark:text-gray-100">
-                    {user?.full_name || user?.email || 'User'}
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {user?.email}
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={handleSignOut}
-                className="p-2 hover:bg-gray-100/80 dark:hover:bg-gray-700/50 rounded-lg transition-colors"
-                title="Sign Out"
-              >
-                <LogOut className="w-5 h-5 text-gray-500 dark:text-gray-300" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Chat Area */}
         <div className="flex-1 flex flex-col h-screen">
-          {/* Header */}
-          <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 p-4 flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <button
-                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="md:hidden p-2 hover:bg-gray-100/80 dark:hover:bg-gray-700/50 rounded-lg transition-colors"
-              >
-                <Menu className="w-5 h-5" />
-              </button>
-              <Shield className="w-6 h-6 text-blue-500" />
-              <h1 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
-                {currentConversation 
-                  ? formatConversationTitle(currentConversation)
-                  : 'CyberGuard AI Assistant'
-                }
-              </h1>
-            </div>
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 hover:bg-gray-100/80 dark:hover:bg-gray-700/50 rounded-lg transition-colors"
-              title="Toggle Dark Mode"
-            >
-              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
-          </div>
+          <ChatHeader
+            currentConversation={currentConversation}
+            darkMode={darkMode}
+            onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+            onToggleDarkMode={() => setDarkMode(!darkMode)}
+            formatConversationTitle={formatConversationTitle}
+          />
 
-          {/* Error Display */}
-          {error && (
-            <div className="bg-red-50/90 dark:bg-red-900/20 border-l-4 border-red-500 p-4 m-4 rounded backdrop-blur-sm">
-              <p className="text-red-700 dark:text-red-300">{error}</p>
-            </div>
-          )}
+          <ErrorDisplay error={error} />
 
-          {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {!currentConversation ? (
-              <div className="h-full flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="bg-blue-50/80 dark:bg-blue-900/50 p-6 rounded-full inline-block backdrop-blur-sm">
-                    <Shield className="w-12 h-12 text-blue-500" />
-                  </div>
-                  <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
-                    Welcome to CyberGuard AI
-                  </h2>
-                  <p className="text-gray-500 dark:text-gray-400 max-w-md">
-                    Create a new conversation or select an existing one to start chatting about cybersecurity topics.
-                  </p>
-                </div>
-              </div>
+              <EmptyState showWelcome={true} />
             ) : messages.length === 0 ? (
-              <div className="h-full flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="bg-blue-50/80 dark:bg-blue-900/50 p-6 rounded-full inline-block backdrop-blur-sm">
-                    <Shield className="w-12 h-12 text-blue-500" />
-                  </div>
-                  <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
-                    Start Your Conversation
-                  </h2>
-                  <p className="text-gray-500 dark:text-gray-400 max-w-md">
-                    Ask me anything about cybersecurity, from basic concepts to advanced topics. I'm here to help you stay safe online.
-                  </p>
-                </div>
-              </div>
+              <EmptyState showWelcome={false} />
             ) : (
               messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-[80%] p-4 rounded-2xl backdrop-blur-sm ${
-                      message.role === 'user'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-white/90 dark:bg-gray-800/90 border border-gray-200/50 dark:border-gray-700/50 text-gray-800 dark:text-gray-100'
-                    }`}
-                  >
-                    <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
-                    <p className={`text-xs mt-2 ${
-                      message.role === 'user' ? 'text-blue-100' : 'text-gray-400 dark:text-gray-500'
-                    }`}>
-                      {new Date(message.created_at).toLocaleTimeString()}
-                    </p>
-                  </div>
-                </div>
+                <ChatMessage key={message.id} message={message} />
               ))
             )}
-            {isTyping && (
-              <div className="flex justify-start">
-                <div className="bg-white/90 dark:bg-gray-800/90 border border-gray-200/50 dark:border-gray-700/50 p-4 rounded-2xl backdrop-blur-sm">
-                  <div className="flex space-x-2">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                  </div>
-                </div>
-              </div>
-            )}
+            {isTyping && <TypingIndicator />}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
           {currentConversation && (
-            <form onSubmit={handleSubmit} className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg border-t border-gray-200/50 dark:border-gray-700/50 p-4">
-              <div className="max-w-4xl mx-auto flex space-x-4">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type your message..."
-                  className="flex-1 border border-gray-300/50 dark:border-gray-600/50 bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 backdrop-blur-sm"
-                  disabled={isLoading}
-                />
-                <button
-                  type="submit"
-                  disabled={!input.trim() || isLoading}
-                  className="bg-blue-500 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-                >
-                  <Send className="w-5 h-5" />
-                </button>
-              </div>
-            </form>
+            <ChatInput
+              input={input}
+              isLoading={isLoading}
+              onInputChange={setInput}
+              onSubmit={handleSubmit}
+            />
           )}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { authAPI } from '../services/api';
 import type { User, UserLoginRequest, UserRegisterRequest } from '../types';
 
@@ -28,6 +29,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -44,6 +46,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       .catch(() => {
         localStorage.removeItem('access_token');
         setUser(null);
+        navigate('/login');
       })
       .finally(() => {
         setIsLoading(false);
@@ -75,6 +78,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('access_token');
     setUser(null);
+    navigate('/');
   };
 
   const value = {
