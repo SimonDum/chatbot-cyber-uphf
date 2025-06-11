@@ -6,10 +6,10 @@ interface ErrorDisplayProps {
 
 export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ error }) => {
   if (!error) return null;
-
+  
   return (
-    <div className="bg-red-50/90 dark:bg-red-900/20 border-l-4 border-red-500 p-4 my-4 rounded">
-      <p className="text-red-700 dark:text-red-300">{error}</p>
+    <div className="mx-4 mt-4 p-4 bg-red-500/20 backdrop-blur-sm border border-red-400/30 rounded-xl text-red-200">
+      {error}
     </div>
   );
 };
