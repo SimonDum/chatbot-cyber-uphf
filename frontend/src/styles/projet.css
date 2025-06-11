@@ -1,0 +1,39 @@
+
+
+
+/* .div-projet{
+    border: red solid 2px; */
+    /* min-height: calc(100vh - 1px); */
+    /* padding-left: 40px; */
+    /* padding-top: 100px; */
+/* } */
+
+.trait-blanc1{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 145px;
+    height: 10px;
+    /* max-height: 10px;COmmentaire */
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+.titre-projet{
+    color: white;
+    font-size: 50px;
+}
+
+
+.texte{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ul{
+    padding-left: 30px;
+} */
+
