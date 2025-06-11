@@ -1,0 +1,43 @@
+APERÇU DES CHUNKS CRÉÉS
+==================================================
+
+CHUNK 1:
+Métadonnées: {'source': "https://numerique.uphf.fr/organisation/sécurité%20des%20systèmes%20d'information", 'section_index': 0, 'chunk_index': 0, 'type': 'uphf_security'}
+Contenu:
+## Description
+
+La sécurité informatique ou plus largement la Sécurité des Systèmes d’Information (SSI) fait partie de la stratégie du numérique à l’UPHF et de l'INSA HdF.Celle-ci s'applique sur l'ensemble des systèmes d'information de l'établissement (Formation, Pédagogie, Ressources Humaines, Recherche, Financier et Comptable, ...) intégrant les moyens techniques, humains et juridiques.Elle vise à protéger la circulation, le stockage et le traitement des données afin de garantir la continuité de l’activité de l’université dans un contexte stratégique des données numériques stockées (données scientifiques, données technologiques, données de gestion, données personnelles…).
+------------------------------
+
+CHUNK 2:
+Métadonnées: {'source': "https://numerique.uphf.fr/organisation/sécurité%20des%20systèmes%20d'information", 'section_index': 1, 'chunk_index': 0, 'type': 'uphf_security'}
+Contenu:
+## Chaine fonctionnelle SSI
+------------------------------
+
+CHUNK 3:
+Métadonnées: {'source': "https://numerique.uphf.fr/organisation/sécurité%20des%20systèmes%20d'information", 'section_index': 1, 'chunk_index': 1, 'type': 'uphf_security'}
+Contenu:
+L’organisation de la SSI dans chaque ministère est conforme à la directive interministérielle n°901 sur la protection des systèmes d’information traitant des informations sensibles non classifiées de défense.Au sein de chaque ministère, on trouveUn Haut Fonctionnaire de Défense et de Sécurité placé sous l’autorité du ministre (HFDS) :Il conseille le ministre en matière de défense et de sécurité. Il anime et coordonne la politique en matière de défense, de vigilance, de prévention de crise et de situation d’urgence et contrôle la préparation des mesures d’application. Il veille à la protection du patrimoine scientifique et technique, anime la politique de sécurité des systèmes d’information et contrôle son application.Un Fonctionnaire de la Sécurité des Systèmes d’Information (FSSI) désigné et placé sous l’autorité du HFDS :Il anime le pilotage de la SSI au sein du ministère, il est le lien avec les AQSSI et RSSI. Il assure la liaison avec les commissions interministérielles et ministérielles spécialisées en matière de SSI.Au sein de chaque établissement, on trouveune Autorité Qualifiée pour la SSI (AQSSI):Le chef d’établissement. Il définit la politique de sécurité des systèmes d’information adaptée à son établissement et en fixe les objectifs
+------------------------------
+
+CHUNK 4:
+Métadonnées: {'source': "https://numerique.uphf.fr/organisation/sécurité%20des%20systèmes%20d'information", 'section_index': 1, 'chunk_index': 2, 'type': 'uphf_security'}
+Contenu:
+. Il définit la politique de sécurité des systèmes d’information adaptée à son établissement et en fixe les objectifs. Il veille à la mise en œuvre des dispositions réglementaires.Un Fonctionnaire de Sécurité de Défense (FSD adjoint) :Désigné par l’AQSSI, il est le correspondant fonctionnel du HFDS, il a un rôle de coordination, de conseil et d’information concernant : la protection du potentiel scientifique et technique, la protection du secret et la préparation/exécution des plans de défense et de sécurité.Un Responsable de la Sécurité du Système d’Information (RSSI) + RSSI adjoint :Désigné par l’AQSSI, il conseille l’AQSSI, assure le suivi des moyens nécessaires à la mise en œuvre des consignes et directives.Compléments d'information à retrouver sur le site dédié à la SSi de Renater
+------------------------------
+
+CHUNK 5:
+Métadonnées: {'source': "https://numerique.uphf.fr/organisation/sécurité%20des%20systèmes%20d'information", 'section_index': 2, 'chunk_index': 0, 'type': 'uphf_security'}
+Contenu:
+## Au sein de chaque ministère, on trouve
+
+Un Haut Fonctionnaire de Défense et de Sécurité placé sous l’autorité du ministre (HFDS) :
+
+Il conseille le ministre en matière de défense et de sécurité. Il anime et coordonne la politique en matière de défense, de vigilance, de prévention de crise et de situation d’urgence et contrôle la préparation des mesures d’application. Il veille à la protection du patrimoine scientifique et technique, anime la politique de sécurité des systèmes d’information et contrôle son application.
+
+Un Fonctionnaire de la Sécurité des Systèmes d’Information (FSSI) désigné et placé sous l’autorité du HFDS :
+
+Il anime le pilotage de la SSI au sein du ministère, il est le lien avec les AQSSI et RSSI. Il assure la liaison avec les commissions interministérielles et ministérielles spécialisées en matière de SSI.
+------------------------------
+
