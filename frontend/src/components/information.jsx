@@ -1,6 +1,5 @@
 
 import React from 'react';
-import '../styles/information.css';
 
 function information() {
   return (
