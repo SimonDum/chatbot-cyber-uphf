@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, Lock, Mail, ArrowLeft, UserPlus, LogIn, User } from 'lucide-react';
+import { Shield, Lock, Mail, ArrowLeft, UserPlus, LogIn, User, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { ErrorDisplay } from './ErrorDisplay';
 
@@ -11,6 +11,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { login, register } = useAuth();
 
@@ -42,8 +43,7 @@ export default function Login() {
       } else {
         setError('Une erreur est survenue');
       }
-    }
-     finally {
+    } finally {
       setIsLoading(false);
     }
   };
@@ -51,127 +51,140 @@ export default function Login() {
   return (
     <div className="min-h-screen relative">
       <div 
-        className="absolute inset-0 bg-cover bg-center z-0"
+        className="absolute inset-0 bg-cover bg-center bg-fixed z-0"
         style={{ 
           backgroundImage: 'url(/pxfuel.jpg)',
-          filter: 'brightness(0.7)'
+          filter: 'brightness(0.4)'
         }}
       />
       
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-md w-full border border-white/20">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-purple-900/20 to-indigo-900/30 z-0" />
+      
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-6">
+        <div className="w-full max-w-md">
+          {/* Bouton retour */}
           <button
             onClick={() => navigate('/')}
-            className="mb-6 text-white/80 hover:text-white flex items-center space-x-2 transition-colors"
+            className="flex items-center space-x-2 text-white/80 hover:text-white mb-8 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Retour à l'accueil</span>
           </button>
 
-          <div className="flex justify-center mb-6">
-            <div className="bg-white/10 p-4 rounded-full">
-              <Shield className="w-12 h-12 text-blue-400" />
-            </div>
-          </div>
-          
-          <h2 className="text-3xl font-bold text-center text-white mb-2">
-            {isRegistering ? 'Créer un compte' : 'Bienvenue'}
-          </h2>
-          
-          <p className="text-center text-blue-200 mb-6">
-            {isRegistering 
-              ? 'Créer un compte pour utiliser CyberBot UPHF'
-              : 'Se connecter pour utiliser CyberBot UPHF'}
-          </p>
-          
-          <ErrorDisplay error={error} />
-          
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {isRegistering && (
-              <div className="space-y-2">
-                <label htmlFor="fullName\" className="block text-sm font-medium text-blue-200">
-                  Nom
-                </label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-300" />
-                  <input
-                    id="fullName"
-                    type="text"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-blue-200/50 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-                    placeholder="John Doe"
-                    required={isRegistering}
-                  />
+          {/* Formulaire de connexion/inscription */}
+          <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl">
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center space-x-3 mb-4">
+                <div className="p-3 bg-blue-500/20 rounded-lg">
+                  <Shield className="w-8 h-8 text-blue-400" />
                 </div>
               </div>
-            )}
+              <h1 className="text-2xl font-bold text-white mb-2">
+                {isRegistering ? 'Inscription à CyberBot UPHF' : 'Connexion à CyberBot UPHF'}
+              </h1>
+              <p className="text-blue-200">
+                {isRegistering 
+                  ? 'Créer un compte pour utiliser votre assistant cybersécurité'
+                  : 'Connectez-vous pour commencer à discuter avec votre assistant cybersécurité'}
+              </p>
+            </div>
 
-            <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-medium text-blue-200">
-                Adresse Email
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-300" />
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-blue-200/50 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-                  placeholder="you@example.com"
-                  required
-                />
-              </div>
-            </div>
-            
-            <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm font-medium text-blue-200">
-                Mot de passe
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-300" />
-                <input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-blue-200/50 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-                  placeholder="••••••••"
-                  required
-                  minLength={6}
-                />
-              </div>
-            </div>
-            
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
-            >
-              {isLoading ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  <span>Processing...</span>
-                </>
-              ) : (
-                <>
-                  {isRegistering ? (
-                    <>
-                      <UserPlus className="w-5 h-5" />
-                      <span>S'inscrire</span>
-                    </>
-                  ) : (
-                    <>
-                      <LogIn className="w-5 h-5" />
-                      <span>Se connecer</span>
-                    </>
-                  )}
-                </>
+            <ErrorDisplay error={error} />
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {isRegistering && (
+                <div>
+                  <label htmlFor="fullName" className="block text-white font-medium mb-2">
+                    Nom complet
+                  </label>
+                  <div className="relative">
+                    <input
+                      id="fullName"
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all pl-12"
+                      placeholder="Simon Dumoulin"
+                      required={isRegistering}
+                    />
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-300" />
+                  </div>
+                </div>
               )}
-            </button>
 
-            <div className="text-center">
+              <div>
+                <label htmlFor="email" className="block text-white font-medium mb-2">
+                  {isRegistering ? 'Adresse Email' : 'Adresse Email'}
+                </label>
+                <div className="relative">
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all pl-12"
+                    placeholder="prenom.nom@uphf.fr"
+                  />
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-300" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="password" className="block text-white font-medium mb-2">
+                  Mot de passe
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    minLength={6}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all pl-12 pr-12"
+                    placeholder="•••••••••"
+                  />
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-300" />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-300 hover:text-white transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full flex items-center justify-center space-x-3 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg text-white font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                {isLoading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Processing...</span>
+                  </>
+                ) : (
+                  <>
+                    {isRegistering ? (
+                      <>
+                        <UserPlus className="w-5 h-5" />
+                        <span>S'inscrire</span>
+                      </>
+                    ) : (
+                      <>
+                        <LogIn className="w-5 h-5" />
+                        <span>Accéder au Chat</span>
+                      </>
+                    )}
+                  </>
+                )}
+              </button>
+            </form>
+
+            <div className="mt-8 text-center">
               <button
                 type="button"
                 onClick={() => {
@@ -179,14 +192,14 @@ export default function Login() {
                   setError('');
                   setFullName('');
                 }}
-                className="text-blue-200 hover:text-white transition-colors text-sm"
+                className="text-blue-400 hover:text-blue-300 font-semibold transition-colors"
               >
                 {isRegistering
-                  ? 'Vous possédez déjà un compte? Connectez-vous'
+                  ? 'Vous possédez déjà un compte ? Connectez-vous'
                   : "Vous n'avez pas encore de compte ? Inscrivez-vous"}
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
