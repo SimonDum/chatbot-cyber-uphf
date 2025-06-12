@@ -63,7 +63,7 @@ function Information() {
             <GraduationCap className="w-8 h-8 text-blue-400" />
             <div className="text-center">
               <h3 className="text-white font-bold text-lg">UPHF - Université Polytechnique Hauts-de-France</h3>
-              <p className="text-blue-200">Spécialité Informatique & Cybersécurité</p>
+              <p className="text-blue-200">FISE 4A Informatique & Cybersécurité</p>
             </div>
           </div>
         </div>
@@ -127,23 +127,6 @@ function Information() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Mission Statement */}
-        <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-xl rounded-3xl p-12 border border-white/10">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-6">Notre Mission Étudiante</h2>
-            <p className="text-xl text-blue-100 leading-relaxed max-w-4xl mx-auto mb-6">
-              En tant qu'étudiants de l'UPHF, nous avons créé CyberBot pour démocratiser l'accès aux connaissances 
-              en cybersécurité. Notre objectif est de fournir un outil d'apprentissage interactif qui aide nos 
-              camarades étudiants et la communauté universitaire à mieux comprendre les enjeux de la sécurité numérique.
-            </p>
-            <div className="flex justify-center">
-              <div className="bg-white/10 rounded-lg px-6 py-3">
-                <span className="text-blue-300 font-semibold">Projet académique 2024 - UPHF</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

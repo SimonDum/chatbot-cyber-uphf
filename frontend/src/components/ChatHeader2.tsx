@@ -4,17 +4,13 @@ import { ConversationResponse } from '../types';
 
 interface ChatHeaderProps {
   currentConversation: ConversationResponse | null;
-  darkMode: boolean;
   onToggleSidebar: () => void;
-  onToggleDarkMode: () => void;
   formatConversationTitle: (conversation: ConversationResponse) => string;
 }
 
 export const ChatHeader: React.FC<ChatHeaderProps> = ({
   currentConversation,
-  darkMode,
   onToggleSidebar,
-  onToggleDarkMode,
   formatConversationTitle
 }) => {
   return (
@@ -31,12 +27,6 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
             {currentConversation ? formatConversationTitle(currentConversation) : 'CyberBot Assistant'}
           </h1>
         </div>
-        <button
-          onClick={onToggleDarkMode}
-          className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-        >
-          {darkMode ? <Sun className="w-5 h-5 text-white" /> : <Moon className="w-5 h-5 text-white" />}
-        </button>
       </div>
     </header>
   );

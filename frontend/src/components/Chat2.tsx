@@ -18,7 +18,6 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -49,7 +48,6 @@ export default function Chat() {
       setError('');
       
       const conversationData = await chatAPI.getConversation(conversation.id);
-      console.log(conversation.messages);
       
       const formattedMessages: Message[] = conversationData.messages;
       setMessages(formattedMessages);
@@ -184,9 +182,7 @@ export default function Chat() {
         <div className="flex-1 flex flex-col h-screen">
           <ChatHeader
             currentConversation={currentConversation}
-            darkMode={darkMode}
             onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-            onToggleDarkMode={() => setDarkMode(!darkMode)}
             formatConversationTitle={formatConversationTitle}
           />
 

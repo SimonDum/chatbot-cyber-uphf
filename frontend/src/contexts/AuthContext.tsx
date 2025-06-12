@@ -40,7 +40,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     authAPI.getMe()
       .then((user) => {
-        console.log('Current user:', user);
         setUser(user);
       })
       .catch(() => {

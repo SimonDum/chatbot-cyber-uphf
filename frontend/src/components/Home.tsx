@@ -168,7 +168,7 @@ export default function Home() {
                 {/* Badge universitaire */}
                 <div className="flex items-center space-x-3 p-4 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 w-fit">
                   <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-white/90 font-medium">Projet étudiant UPHF - Informatique & Cybersécurité</span>
+                  <span className="text-white/90 font-medium">Projet étudiant - FISE 4A ICY</span>
                 </div>
               </div>
 
