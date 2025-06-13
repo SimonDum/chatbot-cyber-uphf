@@ -44,12 +44,10 @@ function Projet() {
         <div className="mb-20">
           <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-xl rounded-3xl p-12 border border-white/10">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-white mb-6">Vision du Projet</h2>
+              <h2 className="text-3xl font-bold text-white mb-6">Description du Projet</h2>
               <p className="text-xl text-blue-100 leading-relaxed max-w-4xl mx-auto">
-                CyberBot UPHF est né de notre constat que la cybersécurité peut sembler complexe et intimidante 
-                pour de nombreux étudiants. Notre vision est de créer un assistant IA qui démystifie cette discipline 
-                en offrant des explications claires, des exemples concrets et un accompagnement personnalisé 
-                pour chaque apprenant de notre université.
+                Notre projet consistait à développer un chatbot conversationnel spécialisé en cybersécurité, destiné aux membres de l'UPHF (étudiants, personnel administratif, enseignants).
+                Accessible via une application web responsive, il doit être en capacité de répondre aux questions liées à la cybersécurité, de fournir des conseils pratiques et d’informer sur les actions locales de l’université dans ce domaine.
               </p>
             </div>
           </div>

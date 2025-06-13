@@ -34,7 +34,7 @@ export const ConversationSidebar: React.FC<ConversationSidebarProps> = ({
             <div className="p-2 bg-blue-500/20 rounded-lg backdrop-blur-sm">
               <Shield className="w-6 h-6 text-blue-400" />
             </div>
-            <span className="text-white font-bold">CyberBot</span>
+            <span className="text-white font-bold">CyberBot UPHF</span>
           </div>
         </div>
 

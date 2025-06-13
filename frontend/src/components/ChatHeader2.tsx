@@ -24,7 +24,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
             <Menu className="w-5 h-5 text-white" />
           </button>
           <h1 className="text-white font-semibold text-lg">
-            {currentConversation ? formatConversationTitle(currentConversation) : 'CyberBot Assistant'}
+            {currentConversation ? formatConversationTitle(currentConversation) : ''}
           </h1>
         </div>
       </div>
