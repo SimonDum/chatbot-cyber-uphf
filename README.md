@@ -21,7 +21,7 @@ L’objectif est de fournir un chatbot pédagogique local, permettant de sensibi
 ## Architecture technique
 
 - **Backend** : FastAPI (Python 3.11)
-- **Orchestration IA** : LangChain
+- **Logique conversationnelle** : LangChain
 - **Modèles IA** : Ollama (LLama3 et nomic-embed-text)
 - **Base de données** : PostgreSQL avec extension `pgvector`
 - **Frontend** : React + Tailwind CSS
