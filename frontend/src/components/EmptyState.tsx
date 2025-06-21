@@ -6,21 +6,43 @@ interface EmptyStateProps {
 }
 
 export const EmptyState: React.FC<EmptyStateProps> = ({ showWelcome }) => {
+  const suggestions = [
+    "Comment créer un mot de passe sécurisé ?",
+    "Qu'est-ce qu'un VPN et comment l'utiliser ?",
+    "Comment détecter un email de phishing ?",
+    "Quelles sont les bonnes pratiques de sécurité web ?"
+  ];
+
   return (
-    <div className="h-full flex items-center justify-center">
-      <div className="text-center space-y-4">
-        <div className="bg-blue-50/80 dark:bg-blue-900/50 p-6 rounded-full inline-block backdrop-blur-sm">
-          <Shield className="w-12 h-12 text-blue-500" />
+    <div className="flex-1 flex items-center justify-center p-8 h-full">
+      <div className="text-center max-w-2xl">
+        <div className="mb-8">
+          <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Shield className="w-10 h-10 text-blue-400" />
+          </div>
+          <h2 className="text-3xl font-bold text-white mb-4">
+            {showWelcome ? 'Bienvenue sur CyberBot' : 'Nouvelle conversation'}
+          </h2>
+          <p className="text-blue-200 text-lg leading-relaxed">
+            {showWelcome 
+              ? 'Votre assistant IA spécialisé en cybersécurité. Posez-moi vos questions pour apprendre et vous protéger en ligne.'
+              : 'Commencez une nouvelle conversation en posant votre question sur la cybersécurité.'
+            }
+          </p>
         </div>
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
-          {showWelcome ? 'Welcome to CyberGuard AI' : 'Start Your Conversation'}
-        </h2>
-        <p className="text-gray-500 dark:text-gray-400 max-w-md">
-          {showWelcome 
-            ? 'Create a new conversation or select an existing one to start chatting about cybersecurity topics.'
-            : 'Ask me anything about cybersecurity, from basic concepts to advanced topics. I\'m here to help you stay safe online.'
-          }
-        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {suggestions.map((suggestion, index) => (
+            <div
+              key={index}
+              className="p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer group"
+            >
+              <p className="text-white group-hover:text-blue-300 transition-colors">
+                {suggestion}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

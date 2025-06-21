@@ -1,7 +1,6 @@
 import React from 'react';
-import { Plus, User, LogOut } from 'lucide-react';
 import { ConversationResponse } from '../types';
-import { ConversationItem } from './ConversationItem';
+import { Shield, MessageSquare, Plus, Trash2, LogOut, User } from 'lucide-react';
 
 interface ConversationSidebarProps {
   conversations: ConversationResponse[];
@@ -27,56 +26,78 @@ export const ConversationSidebar: React.FC<ConversationSidebarProps> = ({
   formatConversationTitle
 }) => {
   return (
-    <div
-      className={`${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
-      } fixed md:relative w-72 bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg h-screen transition-transform duration-300 ease-in-out z-20 md:translate-x-0 border-r border-gray-200/50 dark:border-gray-700/50`}
-    >
-      <div className="p-4 border-b border-gray-200/50 dark:border-gray-700/50">
+    <div className={`${isOpen ? 'w-80' : 'w-0'} transition-all duration-300 overflow-hidden bg-black/20 backdrop-blur-xl border-r border-white/10`}>
+      <div className="h-full flex flex-col p-4">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-blue-500/20 rounded-lg backdrop-blur-sm">
+              <Shield className="w-6 h-6 text-blue-400" />
+            </div>
+            <span className="text-white font-bold">CyberBot UPHF</span>
+          </div>
+        </div>
+
+        {/* New Conversation Button */}
         <button
           onClick={onNewConversation}
-          className="w-full flex items-center justify-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors font-medium"
+          className="flex items-center space-x-3 w-full p-3 bg-blue-500/20 hover:bg-blue-500/30 rounded-xl text-white font-medium transition-all backdrop-blur-sm border border-blue-400/30 hover:border-blue-400/50 mb-4"
         >
           <Plus className="w-5 h-5" />
-          <span>New Chat</span>
+          <span>Nouvelle conversation</span>
         </button>
-      </div>
 
-      <div className="p-4 space-y-2 overflow-y-auto flex-1">
-        {conversations.map(conv => (
-          <ConversationItem
-            key={conv.id}
-            conversation={conv}
-            isActive={currentConversation?.id === conv.id}
-            onSelect={onSelectConversation}
-            onDelete={onDeleteConversation}
-            formatTitle={formatConversationTitle}
-          />
-        ))}
-      </div>
+        {/* Conversations List */}
+        <div className="flex-1 overflow-y-auto space-y-2">
+          {conversations.map((conversation) => (
+            <div
+              key={conversation.id}
+              onClick={() => onSelectConversation(conversation)}
+              className={`group flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${
+                currentConversation?.id === conversation.id
+                  ? 'bg-blue-500/30 border border-blue-400/50'
+                  : 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20'
+              }`}
+            >
+              <div className="flex items-center space-x-3 flex-1 min-w-0">
+                <MessageSquare className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                <span className="text-white text-sm truncate">
+                  {formatConversationTitle(conversation)}
+                </span>
+              </div>
+              <button
+                onClick={(e) => onDeleteConversation(conversation.id, e)}
+                className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-500/20 rounded transition-all"
+              >
+                <Trash2 className="w-4 h-4 text-red-400" />
+              </button>
+            </div>
+          ))}
+        </div>
 
-      <div className="absolute bottom-0 w-full p-4 border-t border-gray-200/50 dark:border-gray-700/50 bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
-              <User className="w-5 h-5 text-white" />
+        {/* User Section */}
+        <div className="border-t border-white/10 pt-4 mt-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3 min-w-0">
+              <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <User className="w-5 h-5 text-blue-400" />
+              </div>
+              <div className="min-w-0">
+                <p className="font-medium text-gray-800 dark:text-gray-100 truncate">
+                  {user?.full_name || user?.email || 'User'}
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                  {user?.email}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="font-medium text-gray-800 dark:text-gray-100">
-                {user?.full_name || user?.email || 'User'}
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {user?.email}
-              </p>
-            </div>
+            <button
+              onClick={onSignOut}
+              className="p-2 hover:bg-red-500/20 rounded-lg transition-colors"
+            >
+              <LogOut className="w-4 h-4 text-red-400" />
+            </button>
           </div>
-          <button
-            onClick={onSignOut}
-            className="p-2 hover:bg-gray-100/80 dark:hover:bg-gray-700/50 rounded-lg transition-colors"
-            title="Sign Out"
-          >
-            <LogOut className="w-5 h-5 text-gray-500 dark:text-gray-300" />
-          </button>
         </div>
       </div>
     </div>

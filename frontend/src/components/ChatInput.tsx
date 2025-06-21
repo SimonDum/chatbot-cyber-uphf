@@ -15,24 +15,32 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   onSubmit
 }) => {
   return (
-    <form onSubmit={onSubmit} className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg border-t border-gray-200/50 dark:border-gray-700/50 p-4">
-      <div className="max-w-4xl mx-auto flex space-x-4">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => onInputChange(e.target.value)}
-          placeholder="Type your message..."
-          className="flex-1 border border-gray-300/50 dark:border-gray-600/50 bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 backdrop-blur-sm"
-          disabled={isLoading}
-        />
-        <button
-          type="submit"
-          disabled={!input.trim() || isLoading}
-          className="bg-blue-500 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-        >
-          <Send className="w-5 h-5" />
-        </button>
-      </div>
-    </form>
+    <div className="p-6 bg-black/20 backdrop-blur-xl border-t border-white/10">
+  <form onSubmit={onSubmit} className='flex h-full'>
+    <div className="flex-1 relative">
+      <textarea
+        value={input}
+        onChange={(e) => onInputChange(e.target.value)}
+        placeholder="Posez votre question sur la cybersécurité..."
+        className="w-full h-full p-6 pr-16 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-blue-200 resize-none focus:outline-none focus:border-blue-400/50 focus:ring-2 focus:ring-blue-400/20"
+        rows={3}
+        style={{ minHeight: '100px', maxHeight: '200px' }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            onSubmit(e);
+          }
+        }}
+      />
+      <button
+        type="submit"
+        disabled={!input.trim() || isLoading}
+        className="absolute right-2 bottom-2 p-3 bg-blue-500/20 hover:bg-blue-500/30 disabled:bg-gray-500/20 disabled:cursor-not-allowed rounded-lg text-white font-medium transition-all backdrop-blur-sm border border-blue-400/30 hover:border-blue-400/50 disabled:border-gray-400/30"
+      >
+        <Send className="w-5 h-5" />
+      </button>
+    </div>
+  </form>
+</div>
   );
 };

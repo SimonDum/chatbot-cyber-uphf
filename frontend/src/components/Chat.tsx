@@ -7,9 +7,9 @@ import { ConversationSidebar } from './ConversationSidebar';
 import { ChatHeader } from './ChatHeader';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
-import { ErrorDisplay } from './ErrorDisplay';
+import { ErrorDisplay } from './ErrorDisplay2';
 import { EmptyState } from './EmptyState'
-import { TypingIndicator } from './TypingIndicator';
+import { TypingIndicator } from './TypingIndicator2';
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -18,7 +18,6 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -49,7 +48,6 @@ export default function Chat() {
       setError('');
       
       const conversationData = await chatAPI.getConversation(conversation.id);
-      console.log(conversation.messages);
       
       const formattedMessages: Message[] = conversationData.messages;
       setMessages(formattedMessages);
@@ -155,8 +153,20 @@ export default function Chat() {
   };
 
   return (
-    <div className={`${darkMode ? 'dark' : ''}`}>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex text-gray-900 dark:text-gray-100">
+    <div className="min-h-screen relative">
+      {/* Background avec parallax */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center z-0"
+        style={{ 
+          backgroundImage: 'url(/pxfuel.jpg)',
+          filter: 'brightness(0.4)',
+        }}
+      />
+      
+      {/* Overlay gradient */}
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-900/30 via-purple-900/20 to-indigo-900/30 z-0" />
+      
+      <div className="relative z-10 min-h-screen flex text-white">
         <ConversationSidebar
           conversations={conversations}
           currentConversation={currentConversation}
@@ -172,9 +182,7 @@ export default function Chat() {
         <div className="flex-1 flex flex-col h-screen">
           <ChatHeader
             currentConversation={currentConversation}
-            darkMode={darkMode}
             onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-            onToggleDarkMode={() => setDarkMode(!darkMode)}
             formatConversationTitle={formatConversationTitle}
           />
 
